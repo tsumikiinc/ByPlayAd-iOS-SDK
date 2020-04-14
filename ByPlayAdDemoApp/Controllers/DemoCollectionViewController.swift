@@ -24,16 +24,11 @@ class DemoCollectionViewController: UICollectionViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    TIBAdSettings.setTest(true)
-    
-    let vFrame: CGRect = CGRect(x: 0.0,
-                                y: 0.0,
-                                width: view.bounds.width,
-                                height: TIBVideoAdView.getViewHeight(fromWidth: view.bounds.width))
-    
-    videoAdView = TIBVideoAdView(frame: vFrame)
+        
+    videoAdView = TIBVideoAdView()
     videoAdView?.isHidden = true
+    videoAdView?.sideMargin = 5.0
+    videoAdView?.backgroundColor = view.backgroundColor
     videoAdView?.delegate = self
     videoAdView?.laodAd(with: 1234)
   }
@@ -46,7 +41,11 @@ extension DemoCollectionViewController {
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     if section == Section.videoAd.rawValue {
-      return videoAdView?.isHidden ?? true ? 0 : 1
+      if let adView = videoAdView, adView.state == .loaded, !adView.isHidden {
+        return 1
+      } else {
+        return 0
+      }
     } else {
       return 9
     }
@@ -59,9 +58,9 @@ extension DemoCollectionViewController {
       cell = collectionView.dequeueReusableCell(withReuseIdentifier: sample1CellIdentifier, for: indexPath)
     case Section.videoAd.rawValue:
       cell = collectionView.dequeueReusableCell(withReuseIdentifier: videoAdCellIdentifier, for: indexPath)
-      if let adv = videoAdView, !adv.isHidden, adv.superview == nil {
+      if let adv = videoAdView, adv.state == .loaded, adv.superview == nil {
         cell.contentView.addSubview(adv)
-        adv.frame = cell.contentView.bounds
+        adv.frame = cell.contentView.bounds.insetBy(dx: 0.0, dy: 5.0)
         adv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
       }
     default:
@@ -76,9 +75,13 @@ extension DemoCollectionViewController: UICollectionViewDelegateFlowLayout {
                       layout collectionViewLayout: UICollectionViewLayout,
                       sizeForItemAt indexPath: IndexPath) -> CGSize {
     if indexPath.section == Section.videoAd.rawValue {
-      let viewWidth = collectionView.bounds.width
-      let viewHeight = TIBVideoAdView.getViewHeight(fromWidth: viewWidth)
-      return CGSize(width: viewWidth, height: viewHeight)
+      if let adView = videoAdView, adView.state == .loaded {
+        let viewWidth = collectionView.bounds.width
+        let viewHeight = adView.getViewHeight(fromWidth: viewWidth) + 10.0
+        return CGSize(width: viewWidth, height: viewHeight)
+      } else {
+        return .zero
+      }
     } else {
       return CGSize(width: 100, height: 100)
     }
