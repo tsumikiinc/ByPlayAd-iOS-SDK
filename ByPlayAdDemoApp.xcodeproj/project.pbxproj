@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0425312445676B00E97EED /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0425302445676A00E97EED /* AdSupport.framework */; };
 		1B124E5C23EA8D1B006A3EAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B124E5B23EA8D1B006A3EAD /* AppDelegate.swift */; };
 		1B124E5E23EA8D1B006A3EAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B124E5D23EA8D1B006A3EAD /* SceneDelegate.swift */; };
 		1B124E6023EA8D1B006A3EAD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B124E5F23EA8D1B006A3EAD /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B0425302445676A00E97EED /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		1B124E5823EA8D1B006A3EAD /* ByPlayAdDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ByPlayAdDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B124E5B23EA8D1B006A3EAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B124E5D23EA8D1B006A3EAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B283195D37E1CC561F2B240 /* Pods_ByPlayAdDemoApp.framework in Frameworks */,
+				1B0425312445676B00E97EED /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,7 @@
 		8B756CAC707D11ECF4AC6A7D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B0425302445676A00E97EED /* AdSupport.framework */,
 				2A96DB9B398AA0EE40A0CB00 /* Pods_ByPlayAdDemoApp.framework */,
 			);
 			name = Frameworks;
@@ -119,7 +123,7 @@
 				1B124E5423EA8D1B006A3EAD /* Sources */,
 				1B124E5523EA8D1B006A3EAD /* Frameworks */,
 				1B124E5623EA8D1B006A3EAD /* Resources */,
-				2840DC6593DC16D98E8BF47A /* [CP] Embed Pods Frameworks */,
+				BB14A63E79DE22B7CF580EE4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -177,23 +181,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2840DC6593DC16D98E8BF47A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7CE8B4BE5976565C8B22D3CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +201,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB14A63E79DE22B7CF580EE4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ByPlayAdDemoApp/Pods-ByPlayAdDemoApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

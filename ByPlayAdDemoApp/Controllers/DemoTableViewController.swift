@@ -24,15 +24,10 @@ class DemoTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    TIBAdSettings.setTest(true)
-    
-    let vFrame: CGRect = CGRect(x: 0.0,
-                                y: 0.0,
-                                width: view.bounds.width,
-                                height: TIBVideoAdView.getViewHeight(fromWidth: view.bounds.width))
-    
-    videoAdView = TIBVideoAdView(frame: vFrame)
+    videoAdView = TIBVideoAdView()
     videoAdView?.isHidden = true
+    videoAdView?.sideMargin = 5.0
+    videoAdView?.backgroundColor = view.backgroundColor
     videoAdView?.delegate = self
     videoAdView?.laodAd(with: 1234)
   }
@@ -45,7 +40,11 @@ extension DemoTableViewController {
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if section == Section.videoAd.rawValue {
-      return videoAdView?.isHidden ?? true ? 0 : 1
+      if let adView = videoAdView, adView.state == .loaded, !adView.isHidden {
+        return 1
+      } else {
+        return 0
+      }
     } else {
       return 15
     }
@@ -55,9 +54,9 @@ extension DemoTableViewController {
     var cell: UITableViewCell
     if indexPath.section == Section.videoAd.rawValue {
       cell = tableView.dequeueReusableCell(withIdentifier: videoAdCellIdentifier)!
-      if let adv = videoAdView, !adv.isHidden, adv.superview == nil {
+      if let adv = videoAdView, adv.state == .loaded, adv.superview == nil {
         cell.contentView.addSubview(adv)
-        adv.frame = cell.contentView.bounds
+        adv.frame = cell.contentView.bounds.insetBy(dx: 0.0, dy: 5.0)
         adv.autoresizingMask = [.flexibleWidth, .flexibleHeight]
       }
     } else {
@@ -69,7 +68,11 @@ extension DemoTableViewController {
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if indexPath.section == Section.videoAd.rawValue {
-      return TIBVideoAdView.getViewHeight(fromWidth: view.bounds.width)
+      if let adView = videoAdView, adView.state == .loaded {
+        return adView.getViewHeight(fromWidth: view.bounds.width) + 10.0
+      } else {
+        return 0.0
+      }
     } else {
       return 44.0
     }

@@ -12,14 +12,10 @@ import ByPlayAd
 class DemoViewController: UIViewController {
   
   @IBOutlet weak var videoAdView: TIBVideoAdView!
+  @IBOutlet weak var heightConstraint: NSLayoutConstraint!
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    
-    // This Setting is debug only
-    TIBAdSettings.setTest(true)
-    TIBAdSettings.setTest(true)
     
     videoAdView.isHidden = true
     videoAdView.delegate = self
@@ -34,6 +30,7 @@ extension DemoViewController: TIBVideoAdViewDelegate {
     
     if isFirstLoaded {
       videoAdView.isHidden = false
+      heightConstraint.constant = videoAdView.getViewHeight()
     }
   }
   
